@@ -84,7 +84,7 @@ SELECT *
 FROM vendor
 INNER JOIN vendor_booth_assignments
 	ON vendor.vendor_id = vendor_booth_assignments.vendor_id
-ORDER BY vendor_name, market_date
+ORDER BY vendor_name, market_date;
 
 
 /* SECTION 3 */
@@ -92,8 +92,9 @@ ORDER BY vendor_name, market_date
 -- AGGREGATE
 /* 1. Write a query that determines how many times each vendor has rented a booth 
 at the farmer’s market by counting the vendor booth assignments per vendor_id. */
-
-
+SELECT vendor_id, COUNT(booth_number) as num_booth_rentals
+FROM vendor_booth_assignments
+GROUP BY vendor_id;
 
 /* 2. The Farmer’s Market Customer Appreciation Committee wants to give a bumper 
 sticker to everyone who has ever spent more than $2000 at the market. Write a query that generates a list 
@@ -101,6 +102,18 @@ of customers for them to give stickers to, sorted by last name, then first name.
 
 HINT: This query requires you to join two tables, use an aggregate function, and use the HAVING keyword. */
 
+SELECT 
+customer_first_name,
+customer_last_name,
+SUM(cp.quantity * cp.cost_to_customer_per_qty) as total_spend
+
+FROM customer_purchases as cp
+INNER JOIN customer as c
+		ON c.customer_id = cp.customer_id
+
+GROUP BY c.customer_id
+HAVING total_spend > 2000
+ORDER by customer_last_name, customer_first_name;
 
 
 --Temp Table
@@ -115,6 +128,19 @@ When inserting the new vendor, you need to appropriately align the columns to be
 VALUES(col1,col2,col3,col4,col5) 
 */
 
+-- if table new_vendor exists, then drop it, otherwise do nothing
+DROP TABLE IF EXISTS temp.new_vendor;
+
+-- create the table from the original
+CREATE TABLE temp.new_vendor AS
+
+-- define the table
+SELECT *
+FROM vendor;
+
+-- add the tenth vendor + five new column values
+INSERT INTO temp.new_vendor
+VALUES('10', 'Thomas''s Superfood Store', 'Fresh Focused', 'Thomas', 'Rosenthal')
 
 
 -- Date
