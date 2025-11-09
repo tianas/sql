@@ -29,6 +29,7 @@ You can start this section following *session 1*.
 Steps to complete this part of the assignment:
 - Load the farmersmarket.db and browse its content
 - Create a logical data model
+- 
 
 <br>
 If this is your first time in DB Browser for SQLite, the following instructions may help:
@@ -105,6 +106,12 @@ Please do not pick the exact same tables that I have already diagrammed. For exa
 	- These are the tables that are connected
 	- <img src="./images/01_farmers_market_conceptual_model.png" width="600">
 - The column names can be found in a few spots (DB Schema window in the bottom right, the Database Structure tab in the main window by expanding each table entry, at the top of the Browse Data tab in the main window)
+
+
+## **MY SUBMISSION**:
+- <img src ="Assignment1_Part1_logical_model.png" width="600">
+- Here, `vendor_booth_assignments` (3 columns) shares a one-to-many relationship with `market_date_info` (12 columns) on `market_date`
+
 
 ***
 
@@ -203,7 +210,17 @@ Link if you encounter a paywall: https://archive.is/srKHV or https://web.archive
 
 Consider, for example, concepts of fariness, inequality, social structures, marginalization, intersection of technology and society, etc.
 
+***
 
-```
-Your thoughts...
-```
+## Response 
+*I hope it's okay that I'm writing this outside the code box - I'd like to include a footnote!* :octocat:
+
+One case is inspired by my current apartment search: It’s been a few years since I’ve had to look for a new place in Toronto, and I see that some “good-to-have” aspects of rental applications in the past—specifically, for the purposes of answering this question, coming to a listing ready with an (excellent) credit check in hand—are now mandatory to be considered for the rental. There are clearly several barriers with this system that touch on all of these concepts, but focusing on the student perspective, the credit system already excludes many students (to state the obvious, it’s really hard to have ideal credit with this cost of living). Students often don’t have long-term jobs, which also makes it difficult to secure loans or other income sources to help with credit. At the graduate student level, for example, we often have to explain that our funding comes through a stipend, teaching assistantships, odd jobs, grants, and/or other sources, and that many of these sources are renewed on a year-by-year contract rather than appearing as steady income sources over the program.
+
+Another case I’m seeing lately is in my postdoctoral research fellowship applications. Specifically, many of the CV forms provided by granting agencies are designed around inputting academic experience, with little or no room for listing and elaborating on non-academic work experience, which, in my view, is just as important as academic experience. For example, I had an industry career for a few years between my undergraduate and graduate degrees, and I don’t have any room for elaboration on these points in many application forms (if I am even able to list them). These systems don’t feel flexible and often leave me uncertain about my application, and like I don’t have the “right experience” to fill them out, and like a huge part of my experience is missing. Pulling from the article, the point that “good database design does not need to predict what will happen 20 years in the future, but needs to acknowledge there will be change” can be extended further: Good design should also consider a much broader, more inclusive set of users with diverse backgrounds and pathways. Providing opportunities to discuss non-academic experience in these applications at the CV form level allows that experience to be at the front of the application and entered into a dedicated database, rather than being buried in later pages of written materials that may or may not be read with the same depth.
+
+ Along similar lines, in a recent postdoc application through a federal Canadian funding agency, I was only able to input one field of study from my undergraduate studies at U of T, and it was difficult to choose one of the two majors and a minor that I completed. As a Psychology PhD candidate, I opted to list my Psychology major, but my Philosophy major was just as formative to my current research program and explains why I completed an undergraduate thesis in Philosophy, which I had to list in the form. U of T’s undergraduate system allows for several combinations of specialist/major/minor programs; given that 80,573 undergraduate students were enrolled at U of T the 2024-25 year[^1], I’m guessing my issue is a very widespread problem, even beyond those applying from outside of U of T. This might be nitpicky as applicants are usually able to expand on their experience in the written materials, but like the previous point, I still felt as if I omitted a huge part of my story up front. I worry that reviewers may overlook a critical piece of information when reading my research proposal, which outlines how philosophical concepts inform my research questions, especially since the document mentioning and detailing my background in Philosophy comes several pages later.
+
+[^1]: from [here!](https://www.utoronto.ca/about-u-of-t/quick-facts)
+
+
