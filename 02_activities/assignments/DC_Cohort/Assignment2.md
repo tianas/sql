@@ -45,17 +45,39 @@ There are several tools online you can use, I'd recommend [Draw.io](https://www.
 
 **HINT:** You do not need to create any data for this prompt. This is a conceptual model only. 
 
+## ANSWER:
+
+- <img src ="assignment2-prompt1.png" width="600">
+
+
 #### Prompt 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+## ANSWER:
+
+- <img src ="assignment2-prompt2.png" width="600">
+
 
 #### Prompt 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
 
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
-```
-Your answer...
-```
+## ANSWER:
+
+The first architecture (type 2) will retain address changes and thus keep a historical record of customer addresses. Here, each customer is allowed to have multiple records, where a new row will be added for an address change and will be tracked through a version column. For example, this customer has recently moved to Toronto:
+
+| customer_id | address                | city      | province | version |
+|-------------|------------------------|-----------|----------|---------|
+| 539         | 123 SQL Street         | Vancouver | BC       | 0       |
+| 539         | 21 Bubblegum Boulevard | Toronto   | ON       | 1       |
+ 
+The second architecture (type 1) will overwrite the previous address and will not track previous addresses. So, the same customer’s entry in the `CUSTOMER_ADDRESS` table will simply look like this:
+
+| customer_id | address                | city      | province |
+|-------------|------------------------|-----------|----------|
+| 539         | 21 Bubblegum Boulevard | Toronto   | ON       |
+
 
 ***
 
@@ -182,6 +204,18 @@ Read: Boykis, V. (2019, October 16). _Neural nets are just people all the way do
 Consider, for example, concepts of labour, bias, LLM proliferation, moderating content, intersection of technology and society, ect. 
 
 
-```
-Your thoughts...
-```
+## ANSWER:
+
+This article presents several ethical issues with neural nets. Though this article was written in 2019, these issues persist or have become even more widespread. One example highlighted int he article is how large-scale annotation work is often severely underpaid:
+
+> But the dataset was, really, created by hundreds of thousands of people manually identifying what the pictures were.
+> To date, more than 14 million images have been labeled by ImageNet, aka by people from around the world looking at images and clicking on buttons for cents.
+
+I still often see these types of details omitted from publications presenting large-scale annotation and corpus work.
+
+The data bias discussion (around the ImageNet Roulette part) is something I think about very frequently in my own research. I am a language researcher, and my research highlights how human heuristics are embedded in the “sophisticated reasoning” patterns of LLMs like GPT-4o. I give LLMs my experimental tasks to supplement my human data. In these tasks, humans and LLMs are asked to judge the intended referent of an ambiguous pronoun in cases like “Susan asked Amanda if she likes cooking new dishes” (inspired by Winograd Schemas)[^1]. My findings show that human readers near-uniformly agree on the intended character: In the example above, 100% of readers resolved the “she” as co-referring with “Amanda”. My follow-up work shows that we arrive at this understanding by making inferences about perspective: Susan is likely asking for novel information, and it would generally be weird for Susan to ask someone about her own preferences. In contrast, LLMs are terrible at resolving these cases. Unsurprisingly, human experiences, learning, world knowledge, and situational reasoning are extremely difficult to capture in LLMs. However, simply changing the names and gender of the characters highlights pervasive data bias issues in LLMs. I ran a study with hundreds of combinations of names (using typical and atypical baby names from different decades) and found extremely inconsistent patterns, even though the rest of the sentence stayed the same. I can’t see exactly how these decisions are made, so I ask the LLM to give me its reasoning for the decision, which often doesn’t even line up with its answer! However, my takeaway from this project is that there are very strong name and gender biases (e.g., the same sentence about cooking dishes above appears to be 50/50 with typical male names, rather than obvious bias to one or another female character - coincidence, or gender-driven bias for cooking?).
+
+These LLMs are presented as highly sophisticated for complex tasks, garnering a false illusion of trust. However, human annotators introduce biases, and training over unrestrained data can lead to hallucinations, misinformation, and varied performance on many tasks (i.e., not all language benchmarking tasks and evaluations are performed well, like Winograd Schemas). These decisions are not transparent, and the black box of typical LLMs make it very difficult to diagnose why a decision was made, where the biases come from (e.g., in my own work, why does using the combination “Fred asked John” yield something very different from “John asked Fred”?), or the training that led to these responses, and who is moderating these models/what the documentation is around this.
+
+[^1]: Inspired by [Winograd Schemas](https://cdn.aaai.org/ocs/4492/4492-21843-1-PB.pdf)
+
